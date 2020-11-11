@@ -1,11 +1,17 @@
+$(document).ready(function(){
+  getWeather();
+})
 
-function myFunction() {
-  // use jQuery ($ is shorthand) to find the div on the page and then change the html
-  // jQuery can do a lot of crazy stuff so make sure to google around to find out more
+var key = "caa6fca84a5e70fc39bdd359b1bf7ddb";
 
-  $("#demo").html("NEWWW PARAGRAPH #javascript #fire");
+function getWeather(){
+  var url = "https://api.openweathermap.org/data/2.5/weather?q=Boston&units=imperial&appid="+key;
 
-  // 'img-circle' is a bootstrap thing! Check out more here: http://getbootstrap.com/css/
-  $("#doge-image").append(`<img class="img-circle" src="images/wowdoge.jpeg" />`);
+  $.ajax(url,{success: function(data){
+    console.log(data);
+    $(".city").text(data.name);
+    $(".temp").text(data.main.temp);
+
+  }})
+
 }
-
